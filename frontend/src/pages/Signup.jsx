@@ -54,7 +54,7 @@ const Signup = () => {
           <label>Password</label>
           <input type="password" placeholder="********" onChange={(e) => setPassword(e.target.value)} required />
 
-          <label>Security Question</label>
+          <label>Security Question : Your first school name?</label>
           <input type="text" placeholder="Your first school?" onChange={(e) => setSecurityQuestion(e.target.value)} required />
 
           <button className="sign-in-btn" onClick={handleSignUp} disabled={loading}>
