@@ -10,6 +10,27 @@ import User from './models/usermodel.js';
 import userRoutes from './routes/userroutes.js';
 import profileRoutes from './routes/profileroutes.js'
 const app=express();
+const allowedOrigins = [
+  "http://localhost:5173", // Allow local development
+  "https://emotorad-kappa.vercel.app" // Allow your deployed frontend
+];
+
+app.use(cors({
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
+  credentials: true // 🔥 Allow credentials (cookies, tokens)
+}));
+
+// Enable preflight for CORS (Fixes OPTIONS request issues)
+app.options("*", cors({
+  origin: allowedOrigins,
+  credentials: true
+}));
 dotenv.config();
 const PORT=process.env.PORT || 5000;
 const url=process.env.MONGO_URL;
@@ -26,13 +47,6 @@ app.use(passport.session());
 passport.use(new localStrategy(User.authenticate()));
 passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
-app.use(
-  cors({
-    origin: "*",
-    methods: "GET,POST,PUT,DELETE,PATCH,OPTIONS",
-    credentials: true,
-  })
-);
 
 // MongoDB Connection
 const dbconnect=async()=>{
