@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "../components/AddProfile.css"; // Ensure styling for modal
 import axios from "axios";
 
-const AddNewProfile = ({ onClose}) => {
+const AddNewProfile = ({ onClose }) => {
   const [tab, setTab] = useState("Basic");
   const [email, setEmail] = useState("");
   const [phonenumber, setPhone] = useState("");
@@ -14,8 +14,10 @@ const AddNewProfile = ({ onClose}) => {
 
   const validateInput = () => {
     if (!name.trim()) return "Profile Name is required.";
-    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email)) return "Please enter a valid email.";
-    if (!phonenumber.trim() || !/^\+?[0-9]{10,15}$/.test(phonenumber)) return "Please enter a valid phone number.";
+    if (!email.trim() || !/^\S+@\S+\.\S+$/.test(email))
+      return "Please enter a valid email.";
+    if (!phonenumber.trim() || !/^\+?[0-9]{10,15}$/.test(phonenumber))
+      return "Please enter a valid phone number.";
     return null;
   };
 
@@ -37,16 +39,13 @@ const AddNewProfile = ({ onClose}) => {
         youtubeChannel,
       };
 
-      let response;
-      
-        response = await axios.post(
-          "https://emotorad-3.onrender.com/profile/addprofile",
-          profilePayload,
-          { headers: { "Content-Type": "application/json" } }
-        );
-        alert("Profile added successfully!");
-    
+      const response = await axios.post(
+        "https://emotorad-3.onrender.com/profile/addprofile",
+        profilePayload,
+        { headers: { "Content-Type": "application/json" } }
+      );
 
+      alert("Profile added successfully!");
       console.log("Profile Submission Response:", response.data);
       onClose();
     } catch (error) {
@@ -60,7 +59,7 @@ const AddNewProfile = ({ onClose}) => {
   return (
     <div className="modal-overlay">
       <div className="modal-content">
-        <h2>{profileData ? "Edit Profile" : "Add New Profile"}</h2>
+        <h2>Add New Profile</h2>
 
         {/* Tabs */}
         <div className="tabs">
@@ -140,7 +139,7 @@ const AddNewProfile = ({ onClose}) => {
             onClick={handleSubmit}
             disabled={loading}
           >
-            {loading ? "Saving..." : profileData ? "Update Profile" : "Add Profile"}
+            {loading ? "Saving..." : "Add Profile"}
           </button>
         </div>
       </div>

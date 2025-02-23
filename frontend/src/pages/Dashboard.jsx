@@ -41,17 +41,13 @@ function Dashboard() {
 
   const fetchProfiles = async () => {
     try {
-      const response = await axios.get("https://emotorad-3.onrender.comprofile/getprofiles");
+      const response = await axios.get("https://emotorad-3.onrender.com/profile/getprofiles");
       setProfiles(response.data.profiles); 
     } catch (error) {
       console.error("Error fetching profiles:", error);
     }
   };
 
-  const handleEdit = (profile) => {
-    setSelectedProfile(profile); 
-    setIsModalOpen(true);
-  };
 
   const handleDelete = async (email) => {
     try {
