@@ -384,10 +384,85 @@
 .bottom-section > * {
   flex: 1;
 }
+.profiles-section {
+  margin-top: 20px;
+  padding: 20px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.profiles-section h2 {
+  font-size: 22px;
+  margin-bottom: 15px;
+  color: #333;
+}
+
+.profiles-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 15px;
+  padding: 0;
+  list-style: none;
+}
+
+.profile-card {
+  background: #f8f9fa;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.profile-card:hover {
+  transform: scale(1.02);
+}
+
+.profile-card p {
+  margin: 5px 0;
+  color: #333;
+}
+
+.profile-buttons {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.profile-btn {
+  padding: 8px 12px;
+  font-size: 14px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.edit-btn {
+  background: #4caf50;
+  color: white;
+}
+
+.edit-btn:hover {
+  background: #45a049;
+}
+
+.delete-btn {
+  background: #0223b3;
+  color: white;
+}
+
+.delete-btn:hover {
+  background: #e60000;
+}
+
 
 
       
-      @media (max-width: 768px) {
+      @media (max-width: 750px) {
         .search-bar {
           display: none;
         }
@@ -430,5 +505,36 @@
           flex-direction: column;
 
         }
-
+        .main-content {
+          margin-left: -250px;
+          width: 100%;
+          transition: margin-left 0.3s ease-in-out;
+        }
+        .menu-button{
+          display:none;
+        }
+      
+        .main.with-sidebar {
+          margin-left: 250px;
+          width: calc(100% - 250px);
+        }
+        .sidebar {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 250px;
+          height: 100%;
+          background-color: #2563eb;
+          transition: left 0.3s ease-in-out;
+          z-index: 1000;
+          padding: 20px;
+          display: flex;
+          flex-direction: column;
+          box-shadow: 2px 0 5px rgba(0, 0, 0, 0.2);
+        }
+      
+        /* When the sidebar is open */
+        .sidebar.open {
+          left: 0;
+        }
       }

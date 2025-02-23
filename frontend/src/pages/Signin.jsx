@@ -22,7 +22,7 @@ const Signin = () => {
     setLoading(true);
     setMessage("");
     try {
-      const response = await axios.post("http://localhost:3000/user/login", { username, password });
+      const response = await axios.post("https://emotorad-3.onrender.com/user/login", { username, password });
       console.log("Response:", response);
       setMessage("Login successful");
       navigate("/dashboard", { state: { user: response.data.user } });

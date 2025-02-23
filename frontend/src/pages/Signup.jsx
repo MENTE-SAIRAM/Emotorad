@@ -18,7 +18,7 @@ const Signup = () => {
     setMessage("");
     try {
       console.log(email, password, securityQuestion);
-      const response = await axios.post("http://localhost:3000/user/register", { email, password, securityQuestion });
+      const response = await axios.post("https://emotorad-3.onrender.com/user/register", { email, password, securityQuestion });
       console.log("Response:", response);
       setMessage("Registration successful");
       navigate("/dashboard");

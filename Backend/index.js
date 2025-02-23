@@ -8,6 +8,7 @@ import passport from 'passport';
 import localStrategy from 'passport-local';
 import User from './models/usermodel.js';
 import userRoutes from './routes/userroutes.js';
+import profileRoutes from './routes/profileroutes.js'
 const app=express();
 dotenv.config();
 const PORT=process.env.PORT || 5000;
@@ -42,6 +43,7 @@ app.get('/',(req,res)=>{
     res.send('Hello World');
 })
 app.use('/user',userRoutes);
+app.use('/profile',profileRoutes)
 app.listen(PORT,()=>{
     console.log(`Server is running on port ${PORT}`);
 })

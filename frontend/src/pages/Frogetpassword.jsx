@@ -20,7 +20,7 @@ const Forgetpassword = () => {
       console.log(email
         ,password
         ,securityQuestion);
-      const res= await axios.post("http://localhost:3000/user/changepassword", {
+      const res= await axios.post("https://emotorad-3.onrender.com/user/changepassword", {
         email,
         password,
         securityQuestion,
